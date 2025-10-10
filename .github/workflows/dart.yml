@@ -33,9 +33,14 @@ jobs:
       - name: Run tests
         run: flutter test || echo "No tests found"
 
-      # 🏗️ Build release APK
+      # 🏗️ Build release APK (fix Kotlin 2.0 incompatibility)
       - name: Build release APK
-        run: flutter build apk --release
+        run: |
+          echo "🔧 Applying Kotlin version fix..."
+          # pastiin Gradle pake Kotlin versi 1.9.24 (kompatibel dgn Flutter 3.32.x)
+          echo "org.gradle.kotlin.dsl.provider.loaders.default.version=1.9.24" >> gradle.properties
+          export ORG_GRADLE_PROJECT_kotlinVersion=1.9.24
+          flutter build apk --release
 
       # 📤 Upload artifact (hasil build bisa di-download di GitHub Actions)
       - name: Upload APK artifact
