@@ -100,7 +100,7 @@ class FirstPage extends StatelessWidget {
             const SizedBox(height: 60),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.pushNamed(context, '/third');
+                Navigator.pushNamed(context, '/second');
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
