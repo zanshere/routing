@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const FirstPage(),
         '/second': (context) => const SecondPage(),
+        '/third': (context) => const ThirdPage(),
       },
     );
   }
@@ -99,7 +100,7 @@ class FirstPage extends StatelessWidget {
             const SizedBox(height: 60),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.pushNamed(context, '/second');
+                Navigator.pushNamed(context, '/third');
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
@@ -183,6 +184,94 @@ class SecondPage extends StatelessWidget {
         ),
       ),
     ),
+    );
+  }
+}
+
+class ThirdPage extends StatelessWidget{
+  const ThirdPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+    title: Text('Halaman Ketiga'),
+    centerTitle: true,
+    backgroundColor: const Color.fromARGB(255, 255, 187, 0),
+    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+  ),
+    body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Hallo Ini Halaman Ketiga',
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+            Image.asset(
+                    'assets/images/courage-typing.gif',
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+            Text(
+              'Halaman Ini Dibuat Oleh Miftah Irsyad Tamam',
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context, '/second');
+              },
+              child: Text(
+                '<< Kembali Ke Halaman Ke Dua',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+
+            SizedBox(height: 15),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/fourth');
+              },
+              child: Text(
+                'Kembali Ke Halaman Ke Empat >>',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
