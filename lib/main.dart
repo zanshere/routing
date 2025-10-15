@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const FirstPage(),
         '/second': (context) => const SecondPage(),
+        '/third': (context) => const ThirdPage(),
       },
     );
   }
@@ -87,39 +88,11 @@ class FirstPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.yellowAccent,
                     ),
-                  ),
-                  const TextSpan(
-                    text:
-                        'Silakan klik tombol di bawah untuk pergi ke halaman kedua.',
-                  ),
+                  )
                 ],
               ),
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 60),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/second');
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24, vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                backgroundColor: Colors.white.withOpacity(0.9),
-                foregroundColor: const Color(0xFF2575FC),
-                elevation: 5,
-              ),
-              icon: const Icon(Icons.arrow_forward_ios_rounded),
-              label: Text(
-                'Pergi ke Halaman Kedua',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),
@@ -164,25 +137,58 @@ class SecondPage extends StatelessWidget {
                     TextSpan(
                       text: 'Muhammad Fauzan. ',
                       style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                      text: 'Silahkan klik button dibawah untuk kembali ke halaman pertama'
-                    ),
+                    )
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Kembali'),
-            ),
+            )
           ],
         ),
       ),
     ),
+    );
+  }
+}
+
+class ThirdPage extends StatelessWidget{
+  const ThirdPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+    title: Text('Halaman Ketiga'),
+    centerTitle: true,
+    backgroundColor: const Color.fromARGB(255, 255, 187, 0),
+    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+  ),
+    body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Hallo Ini Halaman Ketiga',
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+            Image.asset(
+                    'assets/images/courage-typing.gif',
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+            Text(
+              'Halaman Ini Dibuat Oleh Miftah Irsyad Tamam',
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
