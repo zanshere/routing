@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// Yora -- 🌌 FIRST PAGE — Purple → Indigo → Blue mist
+// Yora Section
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
 
@@ -147,7 +147,7 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-// Zanshere -- 🌊 SECOND PAGE — Midnight Blue → Teal → Soft Cyan
+// Zanshere Section
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
 
@@ -210,7 +210,7 @@ class SecondPage extends StatelessWidget {
   }
 }
 
-// Reckon -- 🪐 THIRD PAGE — Royal Blue → Navy → Cool Silver
+// Reckon Section
 class ThirdPage extends StatelessWidget {
   const ThirdPage({super.key});
 
@@ -274,7 +274,7 @@ class ThirdPage extends StatelessWidget {
 }
 
 
-// Rafif 
+// Rafif Section
 class FourthPage extends StatelessWidget {
   const FourthPage({super.key});
 
