@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     FirstPage(),
     SecondPage(),
     ThirdPage(),
+    FourthPage(),
   ];
 
   @override
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'First'),
               BottomNavigationBarItem(icon: Icon(Icons.search_rounded), label: 'Second'),
               BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Third'),
+              BottomNavigationBarItem(icon: Icon(Icons.settings_rounded), label: 'Fourth'), 
             ],
           ),
         ),
@@ -231,7 +233,7 @@ class ThirdPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF1E3C72), Color(0xFF2A5298), Color(0xFFA1C4FD)],
+            colors: [Color(0xFFA1C4FD), Color(0xFF2A5298),Color(0xFF1E3C72) ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -241,7 +243,7 @@ class ThirdPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Hallo Ini Halaman Ketiga',
+                'Hello There 👋',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               const SizedBox(height: 25),
@@ -249,9 +251,81 @@ class ThirdPage extends StatelessWidget {
               const SizedBox(height: 25),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  'Halaman Ini Dibuat Oleh Miftah Irsyad Tamam',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Ini adalah halaman ketiga yang dibuat oleh ',
+                    style: TextStyle(fontSize: 16, color: Colors.white, height: 1.5),
+                    children: [
+                      TextSpan(
+                        text: 'Miftah Irsyad Tamam',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.lightGreenAccent),
+                      )
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+// Rafif 
+class FourthPage extends StatelessWidget {
+  const FourthPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'Halaman Keempat',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color.fromARGB(255, 187, 27, 174), Color.fromARGB(255, 188, 193, 204), Color.fromARGB(255, 165, 219, 213)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Ya.... beginilah halaman terakhir 👋',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 0, 0, 0)),
+              ),
+              const SizedBox(height: 25),
+              Image.asset('assets/images/madoka-magica-anime.gif', height: 200, fit: BoxFit.contain),
+              const SizedBox(height: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Ini adalah halaman keempat yang dibuat oleh ',
+                    style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 0, 0, 0), height: 1.5),
+                    children: [
+                      TextSpan(
+                        text: 'Rafif Firstyan Susanto',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 202, 233, 66)),
+                      )
+                    ],
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
