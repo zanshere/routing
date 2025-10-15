@@ -88,39 +88,11 @@ class FirstPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.yellowAccent,
                     ),
-                  ),
-                  const TextSpan(
-                    text:
-                        'Silakan klik tombol di bawah untuk pergi ke halaman kedua.',
-                  ),
+                  )
                 ],
               ),
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 60),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/second');
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24, vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                backgroundColor: Colors.white.withOpacity(0.9),
-                foregroundColor: const Color(0xFF2575FC),
-                elevation: 5,
-              ),
-              icon: const Icon(Icons.arrow_forward_ios_rounded),
-              label: Text(
-                'Pergi ke Halaman Kedua',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),
@@ -165,21 +137,11 @@ class SecondPage extends StatelessWidget {
                     TextSpan(
                       text: 'Muhammad Fauzan. ',
                       style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                      text: 'Silahkan klik button dibawah untuk kembali ke halaman pertama'
-                    ),
+                    )
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Kembali'),
-            ),
+            )
           ],
         ),
       ),
@@ -223,52 +185,7 @@ class ThirdPage extends StatelessWidget{
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            SizedBox(height: 20),
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pop(context, '/second');
-              },
-              child: Text(
-                '<< Kembali Ke Halaman Ke Dua',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-
-            SizedBox(height: 15),
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/fourth');
-              },
-              child: Text(
-                'Kembali Ke Halaman Ke Empat >>',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),
