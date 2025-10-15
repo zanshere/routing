@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,17 +12,77 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Contoh Navigasi (Pindah Halaman)',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const FirstPage(),
-        '/second': (context) => const SecondPage(),
-        '/third': (context) => const ThirdPage(),
-      },
+      title: 'Dreamy Navbar',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blue,
+        textTheme: GoogleFonts.lexendTextTheme(), // 🩵 Global Lexend Font
+      ),
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
+
+  final pages = const [
+    FirstPage(),
+    SecondPage(),
+    ThirdPage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 550),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          // 🎬 POP animation (scale + fade)
+          final fade = CurvedAnimation(parent: animation, curve: Curves.easeInOut);
+          final scale = Tween<double>(begin: 0.9, end: 1.0)
+              .animate(CurvedAnimation(parent: animation, curve: Curves.easeOutBack));
+
+          return FadeTransition(
+            opacity: fade,
+            child: ScaleTransition(scale: scale, child: child),
+          );
+        },
+        child: pages[currentIndex],
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.black.withOpacity(0.3),
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white70,
+            currentIndex: currentIndex,
+            onTap: (i) => setState(() => currentIndex = i),
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'First'),
+              BottomNavigationBarItem(icon: Icon(Icons.search_rounded), label: 'Second'),
+              BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Third'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Yora -- 🌌 FIRST PAGE — Purple → Indigo → Blue mist
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
 
@@ -32,9 +93,9 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Halaman Pertama',
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             color: Colors.white,
           ),
@@ -42,151 +103,160 @@ class FirstPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Container(
-  constraints: const BoxConstraints.expand(), // 🧩 tambahkan ini
-  decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    ),
-  ),
-  child: SingleChildScrollView(
-    child: Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 80),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Hello There 👋',
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF3B1E76), Color(0xFF283593), Color(0xFF4A90E2)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Hello There 👋',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            Image.asset(
-              'assets/images/nyan-pls-emote.gif',
-              height: 200,
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 20),
-            Text.rich(
-              TextSpan(
-                text: 'Ini adalah halaman pertama yang dibuat oleh ',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.white,
-                  height: 1.5,
-                ),
-                children: [
+              const SizedBox(height: 25),
+              Image.asset('assets/images/nyan-pls-emote.gif', height: 200, fit: BoxFit.contain),
+              const SizedBox(height: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text.rich(
                   TextSpan(
-                    text: 'Joel Christo. ',
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellowAccent,
-                    ),
-                  )
-                ],
+                    text: 'Ini adalah halaman pertama yang dibuat oleh ',
+                    style: TextStyle(fontSize: 16, color: Colors.white, height: 1.5),
+                    children: [
+                      TextSpan(
+                        text: 'Joel Christo',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.yellowAccent),
+                      )
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              textAlign: TextAlign.center,
-            )
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  ),
-),
-
     );
   }
 }
 
-
+// Zanshere -- 🌊 SECOND PAGE — Midnight Blue → Teal → Soft Cyan
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Halaman Kedua')),
-      body: SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Hello There 👋',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'Halaman Kedua',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF0D47A1), Color(0xFF006064), Color(0xFF26C6DA)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Hello There 👋',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-            ),
-            const SizedBox(height: 15),
-            Image.asset('assets/images/finn-dance.gif'),
-            const SizedBox(height: 15),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: Text.rich(
-                TextSpan(
-                  text: 'Ini adalah halaman kedua yang dibuat oleh ',
-                  style: TextStyle(fontSize: 16, height: 1.5),
-                  children: [
-                    TextSpan(
-                      text: 'Muhammad Fauzan. ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
+              const SizedBox(height: 25),
+              Image.asset('assets/images/finn-dance.gif', height: 200, fit: BoxFit.contain),
+              const SizedBox(height: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Ini adalah halaman kedua yang dibuat oleh ',
+                    style: TextStyle(fontSize: 16, color: Colors.white, height: 1.5),
+                    children: [
+                      TextSpan(
+                        text: 'Muhammad Fauzan',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.amberAccent),
+                      )
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }
 
-class ThirdPage extends StatelessWidget{
+// Reckon -- 🪐 THIRD PAGE — Royal Blue → Navy → Cool Silver
+class ThirdPage extends StatelessWidget {
   const ThirdPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-    title: Text('Halaman Ketiga'),
-    centerTitle: true,
-    backgroundColor: const Color.fromARGB(255, 255, 187, 0),
-    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
-  ),
-    body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Hallo Ini Halaman Ketiga',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'Halaman Ketiga',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF1E3C72), Color(0xFF2A5298), Color(0xFFA1C4FD)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Hallo Ini Halaman Ketiga',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-            ),
-            SizedBox(height: 20),
-            Image.asset(
-                    'assets/images/courage-typing.gif',
-                    height: 200,
-                    fit: BoxFit.contain,
-                  ),
-            Text(
-              'Halaman Ini Dibuat Oleh Miftah Irsyad Tamam',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              const SizedBox(height: 25),
+              Image.asset('assets/images/courage-typing.gif', height: 200, fit: BoxFit.contain),
+              const SizedBox(height: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Halaman Ini Dibuat Oleh Miftah Irsyad Tamam',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
